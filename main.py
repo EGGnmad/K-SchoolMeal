@@ -1,6 +1,7 @@
 import asyncio
-
+import os
 import KSchoolMeal
+
 
 #async
 async def main():

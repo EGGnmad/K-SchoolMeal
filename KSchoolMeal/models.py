@@ -1,7 +1,6 @@
 from typing import Optional
 
-region_codes = \
-    {
+region_codes = {
         '서울특별시': 'B10',
         '부산광역시': 'C10',
         '대구광역시': 'D10',
@@ -31,18 +30,18 @@ from dataclasses import dataclass
 
 @dataclass
 class SchoolMealInfo:
-    region_code : str #office of education code
-    region_office_name : str #office of education name
-    school_code : str
-    school_name : str
-    meal_code : str
-    meal_type : str
-    date : str
-    person_number: int
-    dish : list[str]
-    origin_info : list[str]
-    calorie : str
-    nutrients : dict[str, float]
+    region_code : str               #시도교육청코드
+    region_office_name : str        #시도교육청명
+    school_code : str               #표준학교코드
+    school_name : str               #학교명
+    meal_code : str                 #식사코드
+    meal_type : str                 #식사명
+    date : str                      #급식일자
+    person_number: int              #급식인원수
+    dish : list[str]                #요리명
+    origin_info : list[str]         #원산지정보
+    calorie : str                   #칼로리정보
+    nutrients : dict[str, float]    #영양정보
 
 
 

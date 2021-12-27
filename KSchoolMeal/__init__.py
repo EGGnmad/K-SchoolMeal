@@ -7,3 +7,4 @@ from .models import (region_code, SchoolInfo, SchoolMealInfo)
 from .getSchoolMeal import school_meal
 
 from .sync import sync
+
