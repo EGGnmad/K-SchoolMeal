@@ -1,7 +1,5 @@
-from .getSchoolCode import school_code
-from .getSchoolCode import sync
+from .getSchoolCode import (school_code, sync)
 
-from .exceptions import RequestsException
-from .exceptions import TooManyResultException
+from .exceptions import (RequestsException, TooManyResultException)
 
-from .models import office_code
+from .models import (region_code, SchoolInfo)
