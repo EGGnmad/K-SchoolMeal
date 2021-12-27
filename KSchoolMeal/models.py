@@ -36,13 +36,15 @@ class SchoolMealInfo:
     school_code : str
     school_name : str
     meal_code : str
-    meal_name : str
-    day : str
+    meal_type : str
+    date : str
     person_number: int
-    dish_name : str
-    origin_info : str
-    calorie_info : str
-    nutrient_info : str
+    dish : list[str]
+    origin_info : list[str]
+    calorie : str
+    nutrients : dict[str, float]
+
+
 
 @dataclass
 class SchoolInfo:

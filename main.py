@@ -1,13 +1,20 @@
-#test1
 import asyncio
 
 import KSchoolMeal
 
+#async
 async def main():
-    print( await KSchoolMeal.school_code('한국애니메이션고등학교') )
+    school_data = await KSchoolMeal.school_code( input('학교: ') )
+
+    meal_data = await KSchoolMeal.school_meal(school_data.region_code, school_data.school_code, input('시간입력(yyyyMM): '))
+    print(meal_data[0])
 
 if __name__ == '__main__':
     asyncio.run(main())
 
-#test2
-print(KSchoolMeal.sync.school_code('분당중학교'))
+#sync
+school_data = KSchoolMeal.sync.school_code( input('학교: ') )
+
+meal_data = KSchoolMeal.sync.school_meal(school_data.region_code, school_data.school_code, input('시간입력(yyyyMM): '))
+
+print(meal_data)
