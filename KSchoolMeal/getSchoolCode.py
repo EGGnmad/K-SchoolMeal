@@ -37,5 +37,3 @@ class sync:
     @staticmethod
     def school_code(school_name: str, region:Optional[str]=None):
         return asyncio.run(school_code(school_name, region))
-
-print(sync.school_code('분당중학교'))

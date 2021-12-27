@@ -41,4 +41,3 @@ class SchoolMealInfo:
     origin_info : str
     calorie_info : str
     nutrient_info : str
-
