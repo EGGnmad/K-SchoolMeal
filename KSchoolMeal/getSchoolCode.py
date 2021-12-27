@@ -7,13 +7,12 @@ from typing import Optional
 import aiohttp
 import asyncio
 import config
-import exceptions
-
-import models
+from KSchoolMeal import exceptions
+from KSchoolMeal import models
 
 async def school_code(school_name: str, region:Optional[str]=None):
     async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(limit=64, ssl=False)) as session:
-        async with session.get(config.school_info_base_url, params= await checkRegion(region, school_name) ) as response:
+        async with session.get(config.school_info_base_url, params= await check_region(region, school_name) ) as response:
             result = await response.json(content_type='text/html')
             try:
                 status = result['schoolInfo'][0]['head'][1]['RESULT']['CODE'] #check response RESULT CODE
@@ -26,7 +25,7 @@ async def school_code(school_name: str, region:Optional[str]=None):
                 raise exceptions.RequestsException(result['RESULT']['CODE'])
 
 
-async def checkRegion(region, school_name:str) -> dict:
+async def check_region(region, school_name:str) -> dict:
     if models.office_code(region) != None:
         return {'KEY':config.app_key, 'Type':'json', 'ATPT_OFCDC_SC_CODE': models.office_code(region), 'SCHUL_NM': school_name}
     else:
