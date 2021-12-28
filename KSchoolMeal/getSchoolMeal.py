@@ -1,13 +1,15 @@
 import aiohttp
 from KSchoolMeal import exceptions
 from KSchoolMeal.models import SchoolMealInfo
-
+from dotenv import load_dotenv
+import os
 
 
 
 async def school_meal(region_code: str, school_code:str, date: str, app_key:str='sample_key') -> list[SchoolMealInfo]:
+    load_dotenv()
     async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(limit=64, ssl=False)) as session:
-        async with session.get('https://open.neis.go.kr/hub/mealServiceDietInfo', params={'Type': 'json', 'ATPT_OFCDC_SC_CODE': region_code, 'SD_SCHUL_CODE': school_code, 'MLSV_YMD': date}) as response:
+        async with session.get('https://open.neis.go.kr/hub/mealServiceDietInfo', params={'KEY': os.getenv('api_key'),'Type': 'json', 'ATPT_OFCDC_SC_CODE': region_code, 'SD_SCHUL_CODE': school_code, 'MLSV_YMD': date}) as response:
             result =  await response.json(content_type='text/html')
             try:
                 status = result['mealServiceDietInfo'][0]['head'][1]['RESULT']['CODE'] #check response RESULT CODE
@@ -68,5 +70,4 @@ async def school_meal_info(data) -> SchoolMealInfo:
         calorie=calorie,
         nutrients=nutrients
     )
-
     return result

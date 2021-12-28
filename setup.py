@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='k-SchoolMeal',
-    version='1.0.8 Alpha',
+    version='1.0.9 Alpha',
 
     description='school meal data',
     long_description = open('README.md').read(),
@@ -17,7 +17,7 @@ setup(
     install_requires = ['aiohttp', 'python-dotenv'],
 
     packages=['KSchoolMeal'],
-    package_data={'KSchoolMeal': ['data/data.dat'] },
+    package_data={'KSchoolMeal': ['.env'] },
     include_package_data= True,
     keywords=['korea', 'school meal'],
     python_requires = '>=3.7',
