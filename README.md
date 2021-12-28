@@ -4,7 +4,7 @@
 
 ---
 [![](https://img.shields.io/badge/Python-3.7|3.8|3.9|3.10-blue?style=flat-square&logo=python)](https://www.python.org/)
-![](https://img.shields.io/badge/KSchoolMeal-1.0.0Alpha-blue?style=flat-square)
+[![](https://img.shields.io/badge/KSchoolMeal-1.0.0Alpha-blue?style=flat-square)](https://pypi.org/project/k-SchoolMeal/)
 
 
 <h3>다운</h3>
