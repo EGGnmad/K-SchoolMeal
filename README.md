@@ -1,4 +1,4 @@
-<h2> 🍞 K-School Meal </h2>
+<h3> 🍞 K-School Meal </h3>
 
 <h4>k-급식</h4> 
 
