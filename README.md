@@ -15,6 +15,42 @@ python3 -m pip install k-SchoolMeal
 
 <br>
 
+<h3> 함수 </h3>
+
+---
+
+**School code**
+
+```py
+# ex-1
+KSchoolMeal.school_code('분당중학교')
+
+# ex-2
+KSchoolMeal.school_code('광문고등학교', '서울특별시')
+```
+
+> | param       | type           | description                                          |
+> |-------------|----------------|------------------------------------------------------|
+> | school_name | str            | school name                                          |
+> | region_name | optional\<str> | add region in parameters will increase more accuracy |
+
+**School_meal**
+
+```py
+# ex
+KSchoolMeal.school_meal('B10', '123456', '2021.12.01')
+```
+
+>| param       | type | description                     |
+>|-------------|------|---------------------------------|
+>| region_code | str  | region code                     |
+>| school_code | str  | school code                     |
+>| date        | str  | the day of you want to get data 
+
+
+
+
+
 <h3>예시</h3>
 
 ---
@@ -45,30 +81,6 @@ def main():
 <h3>정보</h3>
 
 ---
-
-<h4>교육청 코드</h4>
-
-```py
-region_codes = {
-        '서울특별시': 'B10',
-        '부산광역시': 'C10',
-        '대구광역시': 'D10',
-        '인천광역시': 'E10',
-        '광주광역시': 'F10',
-        '대전광역시': 'G10',
-        '울산광역시': 'H10',
-        '세종특별자치시': 'I10',
-        '경기도': 'J10',
-        '강원도': 'K10',
-        '충청북도': 'M10',
-        '충청남도': 'N10',
-        '전라북도': 'P10',
-        '전라남도': 'Q10',
-        '경상북도': 'R10',
-        '경상남도': 'S10',
-        '제주특별자치도': 'T10'
-    }
-```
 
 <h4> 응답 정보 </h4>
 
