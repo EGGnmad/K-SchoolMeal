@@ -32,7 +32,12 @@ def main():
     school_info = KSchoolMeal.sync.school_code('분당중학교')
     
     meal = KSchoolMeal.sync.school_meal(school_info.region_code, school_info.school_code, '2021.11.01') #-> List[SchoolMealInfo]
-
+    
+#sync [detail]
+def main():
+    school_info = KSchoolMeal.sync.school_code('광문고', '서울특별시') # add region in parameters will increase more accuracy
+    
+    meal = KSchoolMeal.sync.school_meal(school_info.region_code, school_info.school_code, '2021.11.01') #-> List[SchoolMealInfo]
 ```
 
 <br>
