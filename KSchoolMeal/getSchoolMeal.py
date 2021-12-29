@@ -9,6 +9,7 @@ import os
 async def school_meal(region_code: str, school_code:str, date: str, app_key:str='sample_key') -> list[SchoolMealInfo]:
     load_dotenv()
     async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(limit=64, ssl=False)) as session:
+        date = date.replace('.', '')
         async with session.get('https://open.neis.go.kr/hub/mealServiceDietInfo', params={'KEY': os.getenv('api_key'),'Type': 'json', 'ATPT_OFCDC_SC_CODE': region_code, 'SD_SCHUL_CODE': school_code, 'MLSV_YMD': date}) as response:
             result =  await response.json(content_type='text/html')
             try:
@@ -45,15 +46,10 @@ async def school_meal_info(data) -> SchoolMealInfo:
     nutrients_list = data['NTR_INFO'].split('<br/>')
     nutrients = {}
 
-    nutrients['탄수화물(g)'] = float(str(nutrients_list[0]).replace('탄수화물(g) : ', ''))
-    nutrients['단백질(g)'] = float(str(nutrients_list[1]).replace('단백질(g) : ', ''))
-    nutrients['지방(g)'] = float(str(nutrients_list[2]).replace('지방(g) : ', ''))
-    nutrients['비타민A(R.E)'] = float(str(nutrients_list[3]).replace('비타민A(R.E) : ', ''))
-    nutrients['티아민(mg)'] = float(str(nutrients_list[4]).replace('티아민(mg) : ', ''))
-    nutrients['리보플라빈(mg)'] = float(str(nutrients_list[5]).replace('리보플라빈(mg) : ', ''))
-    nutrients['비타민C(mg)'] = float(str(nutrients_list[6]).replace('비타민C(mg) : ', ''))
-    nutrients['칼슘(mg)'] = float(str(nutrients_list[7]).replace('칼슘(mg) : ', ''))
-    nutrients['철분(mg)'] = float(str(nutrients_list[8]).replace('철분(mg) : ', ''))
+    for nutrient in nutrients_list:
+        key, value =  str(nutrient).split(':')
+        nutrients[key.replace(' ', '')] = float(value.replace(' ', ''))
+    print(nutrients)
 
 
     result = SchoolMealInfo(

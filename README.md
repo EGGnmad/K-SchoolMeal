@@ -20,22 +20,18 @@ python3 -m pip install k-SchoolMeal
 ---
 
 ```py
-import asyncio
-
-import KSchoolMeal
+#분당중학교
 
 #async
 async def main():
-    school_data = await KSchoolMeal.school_code( input('school: ') )
-
-    meal_data = await KSchoolMeal.school_meal(school_data.region_code, school_data.school_code, input('date(yyyyMM): '))
-    # meal_data: List[SchoolMealInfo] 
+    school_info = await KSchoolMeal.school_code('분당중학교')
+    meal = await KSchoolMeal.school_meal(school_info.region_code, school_info.school_code, '2021.11.01') #-> List[SchoolMealInfo] 
 
 #sync
 def main():
-    school_data = KSchoolMeal.sync.school_code( input('school: ') )
+    school_info = KSchoolMeal.sync.school_code('분당중학교')
     
-    meal_data = KSchoolMeal.sync.school_meal(school_data.region_code, school_data.school_code, input('date(yyyyMM): '))
+    meal = KSchoolMeal.sync.school_meal(school_info.region_code, school_info.school_code, '2021.11.01') #-> List[SchoolMealInfo]
 
 ```
 
@@ -69,10 +65,10 @@ region_codes = {
     }
 ```
 
-<h4> 클래스 </h4>
+<h4> 응답 정보 </h4>
 
 ```py
-class SchoolMealInfo: # 급식 정보
+class SchoolMealInfo:               # 급식 정보
     region_code : str               #시도교육청코드
     region_office_name : str        #시도교육청명
     school_code : str               #표준학교코드
@@ -88,7 +84,22 @@ class SchoolMealInfo: # 급식 정보
 ```
 
 ```py
-class SchoolInfo: # 학교 정보
+#예시
+nutrients = {
+        '탄수화물(g)': 104.3,
+        '단백질(g)': 35.8,
+        '지방(g)': 18.7,
+        '비타민A(R.E)': 285.8,
+        '티아민(mg)': 0.4,
+        '리보플라빈(mg)': 0.6,
+        '비타민C(mg)': 22.5,
+        '칼슘(mg)': 220.0,
+        '철분(mg)': 3.9
+    }
+```
+
+```py
+class SchoolInfo:                   # 학교 정보
     region_code : str               #시도교육청코드
     region_office_name : str        #시도교육청명
     school_code : str               #표준학교코드
