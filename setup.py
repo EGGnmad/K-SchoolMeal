@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='k-SchoolMeal',
-    version='1.0.9 Alpha',
+    version='1.0.10 Alpha',
 
     description='school meal data',
     long_description = open('README.md').read(),

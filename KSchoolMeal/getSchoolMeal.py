@@ -49,7 +49,6 @@ async def school_meal_info(data) -> SchoolMealInfo:
     for nutrient in nutrients_list:
         key, value =  str(nutrient).split(':')
         nutrients[key.replace(' ', '')] = float(value.replace(' ', ''))
-    print(nutrients)
 
 
     result = SchoolMealInfo(
