@@ -1,28 +1,26 @@
+from typing import Optional
+
 import aiohttp
 from KSchoolMeal import exceptions
 from KSchoolMeal.models import SchoolMealInfo
-from dotenv import load_dotenv
 import os
 
 
 
-async def school_meal(region_code: str, school_code:str, date: str, app_key:str='sample_key') -> list[SchoolMealInfo]:
-    load_dotenv()
+async def school_meal(region_code: str, school_code:str, date: str) -> list[SchoolMealInfo]:
     async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(limit=64, ssl=False)) as session:
         date = date.replace('.', '')
-        async with session.get('https://open.neis.go.kr/hub/mealServiceDietInfo', params={'KEY': os.getenv('api_key'),'Type': 'json', 'ATPT_OFCDC_SC_CODE': region_code, 'SD_SCHUL_CODE': school_code, 'MLSV_YMD': date}) as response:
+        async with session.get('https://open.neis.go.kr/hub/mealServiceDietInfo', params={'Type': 'json', 'ATPT_OFCDC_SC_CODE': region_code, 'SD_SCHUL_CODE': school_code, 'MLSV_YMD': date}) as response:
             result =  await response.json(content_type='text/html')
             try:
                 status = result['mealServiceDietInfo'][0]['head'][1]['RESULT']['CODE'] #check response RESULT CODE
 
                 result = result['mealServiceDietInfo'][1]['row']
 
-                meal_datas = []
-
-                for data in result:
-                    meal_datas.append(await school_meal_info(data))
+                meal_datas = [await school_meal_info(data) for data in result]
 
                 return meal_datas
+
 
             except KeyError:
                 raise exceptions.RequestsException(str(result['RESULT']['CODE']) + ': ' + str(result['RESULT']['MESSAGE']))

@@ -20,7 +20,7 @@ __pycache__/
 
 .idea/
 
-*/.env
+.env
 
 # C extensions
 *.so

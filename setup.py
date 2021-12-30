@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='k-SchoolMeal',
-    version='1.0.10 Alpha',
+    version='1.1.0 Alpha',
 
     description='school meal data',
     long_description = open('README.md').read(),
@@ -16,8 +16,7 @@ setup(
     download_url='https://github.com/EGGnmad/K-SchoolMeal',
     install_requires = ['aiohttp', 'python-dotenv'],
 
-    packages=['KSchoolMeal'],
-    package_data={'KSchoolMeal': ['.env'] },
+    packages=find_packages(),
     include_package_data= True,
     keywords=['korea', 'school meal'],
     python_requires = '>=3.7',
